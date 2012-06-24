@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django import forms
 from widgets import InputMoneyWidget
-from moneyed.classes import Money, CURRENCIES, DEFAULT_CURRENCY_CODE
+from moneyed.classes import Money, CURRENCIES
 
 __all__ = ('MoneyField',)
 
@@ -21,7 +21,7 @@ class MoneyField(forms.DecimalField):
         if not currency:
             raise forms.ValidationError(_(u'Currency is missing'))
         currency = currency.upper()
-        if not CURRENCIES.get(currency, False) or currency == DEFAULT_CURRENCY_CODE:
+        if not CURRENCIES.get(currency, False):
             raise forms.ValidationError(_(u"Unrecognized currency type '%s'." % currency))
         return Money(amount=amount, currency=currency)
 

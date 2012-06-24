@@ -1,11 +1,11 @@
 from django import forms
-from moneyed import Money, CURRENCIES, DEFAULT_CURRENCY_CODE
+from moneyed import Money, CURRENCIES
 from decimal import Decimal
 import operator
 
 __all__ = ('InputMoneyWidget', 'CurrencySelectWidget',)
 
-CURRENCY_CHOICES = [(c.code, c.name) for i, c in CURRENCIES.items() if c.code != DEFAULT_CURRENCY_CODE]
+CURRENCY_CHOICES = [(c.code, c.name) for i, c in CURRENCIES.items()]
 CURRENCY_CHOICES.sort(key=operator.itemgetter(1))
 
 
